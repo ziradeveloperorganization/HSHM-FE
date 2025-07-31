@@ -1,7 +1,0 @@
-{
-  "name": "HSHM",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react-vite"
-}
