@@ -1,3 +1,4 @@
+// MainLayout.jsx
 import React, { useState } from 'react';
 import { IonPage, IonContent } from '@ionic/react';
 import Header from '../components/Header';
@@ -11,15 +12,15 @@ export default function MainLayout({ children, dark, toggleDark }) {
 
   return (
     <>
-      {/* Sidebar Overlay */}
       <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
 
-      {/* Main Content */}
       <IonPage id="main">
         <Header dark={dark} toggleDark={toggleDark} toggleSidebar={toggleSidebar} />
+        
         <IonContent className="main-body">
-          {children}
+          {children} {/* This will now be your IonRouterOutlet */}
         </IonContent>
+
         <Footer />
       </IonPage>
     </>
