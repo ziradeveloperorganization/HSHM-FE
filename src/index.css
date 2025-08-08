@@ -124,15 +124,3 @@ ion-button.fill-clear ion-icon {
 html.dark ion-button.fill-clear ion-icon {
   color: var(--ion-color-light) !important;
 }
-
-.profile-popover {
-  --width: 200px;
-  --min-width: 200px;
-  --max-width: 200px;
-}
-
-.profile-popover::part(content) {
-  transform-origin: right top;
-  margin-top: 5px;
-  margin-right: 5px;
-}

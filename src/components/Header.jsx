@@ -26,6 +26,7 @@ import {
   close,
 } from 'ionicons/icons';
 import { commonData } from '../core/CommonDatas';
+import '../assets/css/component/Header.css';
 
 const dummyUser = {
   loggedIn: true,

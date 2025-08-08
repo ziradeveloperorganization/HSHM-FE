@@ -1,0 +1,12 @@
+/* Profile popover styles */
+.profile-popover {
+  --width: 200px;
+  --min-width: 200px;
+  --max-width: 200px;
+}
+
+.profile-popover::part(content) {
+  transform-origin: right top;
+  margin-top: 5px;
+  margin-right: 5px;
+}
