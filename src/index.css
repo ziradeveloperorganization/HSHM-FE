@@ -1,17 +1,45 @@
-/* Dark theme support */
+/* === Bootstrap Buttons mapped to Ionic variables === */
+.btn-primary {
+  background-color: var(--ion-color-primary) !important;
+  border-color: var(--ion-color-primary) !important;
+}
+.btn-primary:hover {
+  background-color: var(--ion-color-primary-shade) !important;
+  border-color: var(--ion-color-primary-shade) !important;
+}
+
+/* === Bootstrap Text Colors === */
+.text-primary {
+  color: var(--ion-color-primary) !important;
+}
+.text-secondary {
+  color: var(--ion-color-secondary) !important;
+}
+
+/* === Bootstrap Background Colors === */
+.bg-primary {
+  background-color: var(--ion-color-primary) !important;
+}
+.bg-secondary {
+  background-color: var(--ion-color-secondary) !important;
+}
+
+/* === Ionic Theme Base (Light) === */
 :root {
   --ion-background-color: #ffffff;
   --ion-text-color: #000000;
 }
 
-:root.dark {
+/* === Ionic Theme (Dark) === */
+html.dark {
   --ion-background-color: #121212;
   --ion-text-color: #ffffff;
 }
 
+/* === Main Body Styling (applied only in MainLayout) === */
 .main-body {
   padding: 16px;
   background: var(--ion-background-color);
   color: var(--ion-text-color);
-  min-height: calc(100vh - 100px); /* Adjust if header/footer sizes change */
+  min-height: calc(100vh - 100px); /* Adjust if header/footer heights change */
 }

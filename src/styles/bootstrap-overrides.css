@@ -1,0 +1,85 @@
+/* =========================================
+   Bootstrap + Ionic Unified Theme Overrides
+   ========================================= */
+
+/* === Ionic Theme Base (Light Mode) === */
+:root {
+  --ion-background-color: #ffffff;
+  --ion-text-color: #000000;
+
+  /* Bootstrap color variables from Ionic */
+  --bs-body-bg: var(--ion-background-color);
+  --bs-body-color: var(--ion-text-color);
+
+  --bs-primary: var(--ion-color-primary);
+  --bs-secondary: var(--ion-color-secondary);
+  --bs-success: var(--ion-color-success);
+  --bs-danger: var(--ion-color-danger);
+  --bs-warning: var(--ion-color-warning);
+  --bs-info: var(--ion-color-medium);
+}
+
+/* === Ionic Theme Override (Dark Mode) === */
+html.dark {
+  --ion-background-color: #121212;
+  --ion-text-color: #ffffff;
+
+  --bs-body-bg: var(--ion-background-color);
+  --bs-body-color: var(--ion-text-color);
+
+  /* Keep Bootstrap's palette aligned */
+  --bs-primary: var(--ion-color-primary);
+  --bs-secondary: var(--ion-color-secondary);
+  --bs-success: var(--ion-color-success);
+  --bs-danger: var(--ion-color-danger);
+  --bs-warning: var(--ion-color-warning);
+  --bs-info: var(--ion-color-medium);
+}
+
+/* === Bootstrap Buttons mapped to Ionic variables === */
+.btn-primary {
+  background-color: var(--ion-color-primary) !important;
+  border-color: var(--ion-color-primary) !important;
+  color: var(--ion-color-primary-contrast, #fff) !important;
+}
+.btn-primary:hover {
+  background-color: var(--ion-color-primary-shade) !important;
+  border-color: var(--ion-color-primary-shade) !important;
+}
+
+/* === Bootstrap Text Colors === */
+.text-primary {
+  color: var(--ion-color-primary) !important;
+}
+.text-secondary {
+  color: var(--ion-color-secondary) !important;
+}
+
+/* Automatic light/dark text for normal content */
+.text-body {
+  color: var(--ion-text-color) !important;
+}
+
+/* === Bootstrap Background Colors === */
+.bg-primary {
+  background-color: var(--ion-color-primary) !important;
+  color: var(--ion-color-primary-contrast, #fff) !important;
+}
+.bg-secondary {
+  background-color: var(--ion-color-secondary) !important;
+  color: var(--ion-color-secondary-contrast, #fff) !important;
+}
+
+/* Automatic light/dark background */
+.bg-body {
+  background-color: var(--ion-background-color) !important;
+  color: var(--ion-text-color) !important;
+}
+
+/* === Main Body Styling for Ionic Layout === */
+.main-body {
+  padding: 16px;
+  background: var(--ion-background-color);
+  color: var(--ion-text-color);
+  min-height: calc(100vh - 100px); /* Adjust if header/footer heights change */
+}

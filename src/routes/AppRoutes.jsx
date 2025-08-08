@@ -7,7 +7,7 @@ import Home from '../pages/Home';
 import About from '../pages/About';
 
 // Pages without layout
-import Login from '../pages/Login';
+/* import Login from '../pages/Login'; */
 
 export default function AppRoutes({ dark, toggleDark, MainLayout }) {
   return (
@@ -33,7 +33,7 @@ export default function AppRoutes({ dark, toggleDark, MainLayout }) {
       />
 
       {/* Routes WITHOUT Layout */}
-      <Route path="/login" exact component={Login} />
+      {/* <Route path="/login" exact component={Login} /> */}
     </IonRouterOutlet>
   );
 }
