@@ -1,17 +1,39 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import { IonRouterOutlet } from '@ionic/react';
+import { Route } from 'react-router-dom';
 
-// Pages
+// Pages with layout
 import Home from '../pages/Home';
 import About from '../pages/About';
 
-export default function AppRoutes() {
+// Pages without layout
+import Login from '../pages/Login';
+
+export default function AppRoutes({ dark, toggleDark, MainLayout }) {
   return (
     <IonRouterOutlet>
-      <Route path="/" exact component={Home} />
-      <Route path="/home" exact component={Home} />
-      <Route path="/about" exact component={About} />
+      {/* Routes WITH Layout */}
+      <Route
+        path="/"
+        exact
+        render={() => (
+          <MainLayout dark={dark} toggleDark={toggleDark}>
+            <Home />
+          </MainLayout>
+        )}
+      />
+      <Route
+        path="/about"
+        exact
+        render={() => (
+          <MainLayout dark={dark} toggleDark={toggleDark}>
+            <About />
+          </MainLayout>
+        )}
+      />
+
+      {/* Routes WITHOUT Layout */}
+      <Route path="/login" exact component={Login} />
     </IonRouterOutlet>
   );
 }

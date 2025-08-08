@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { IonApp } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import MainLayout from './layouts/MainLayout';
 import AppRoutes from './routes/AppRoutes';
+import MainLayout from './layouts/MainLayout';
 
 export default function App() {
   const [dark, setDark] = useState(false);
@@ -14,9 +14,7 @@ export default function App() {
   return (
     <IonApp>
       <IonReactRouter>
-        <MainLayout dark={dark} toggleDark={() => setDark(!dark)}>
-          <AppRoutes />
-        </MainLayout>
+        <AppRoutes dark={dark} toggleDark={() => setDark(!dark)} MainLayout={MainLayout} />
       </IonReactRouter>
     </IonApp>
   );
