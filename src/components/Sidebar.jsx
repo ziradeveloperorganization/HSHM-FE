@@ -5,6 +5,7 @@ import { closeOutline, menuOutline, personCircleOutline, logOutOutline } from 'i
 import { addIcons } from 'ionicons';
 import '../assets/css/component/Sidebar.css';
 import { sidebarMenus } from './Data/menuData';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 // Register icons
 addIcons({
@@ -17,6 +18,7 @@ addIcons({
 export default function Sidebar({ isOpen, toggleSidebar }) {
   const location = useLocation();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 992);
+  const history = useHistory();
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 992);
@@ -48,6 +50,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
 
   const handleLogout = () => {
     console.log("Logging out...");
+    history.push("/login");
   };
 
   return (

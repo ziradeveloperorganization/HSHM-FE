@@ -1,17 +1,58 @@
-// AppRoutes.jsx
-import React from 'react';
-import { IonRouterOutlet } from '@ionic/react';
-import { Route } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Route, Redirect, useLocation } from "react-router-dom";
+import { IonRouterOutlet } from "@ionic/react";
 
-// Pages
-import Home from '../pages/Home';
-import About from '../pages/About';
+import MainLayout from "../layouts/MainLayout";
+import Login from "../pages/auth/Login";
+import Home from "../pages/content/Home";
+import About from "../pages/content/About";
 
 export default function AppRoutes() {
+  const [dark, setDark] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", dark);
+  }, [dark]);
+
+  const toggleSidebar = (value) => {
+    if (typeof value === "boolean") {
+      setSidebarOpen(value);
+    } else {
+      setSidebarOpen((prev) => !prev);
+    }
+  };
+
+  const hideLayout = location.pathname === "/login";
+
+  if (hideLayout) {
+    // No layout for login
+    return (
+      <IonRouterOutlet>
+        <Route path="/" exact>
+          <Redirect to="/login" />
+        </Route>
+        <Route path="/login" exact component={Login} />
+      </IonRouterOutlet>
+    );
+  }
+
+  // Layout for all other routes
   return (
-    <IonRouterOutlet>
-      <Route path="/" exact component={Home} />
-      <Route path="/about" exact component={About} />
-    </IonRouterOutlet>
+    <MainLayout
+      dark={dark}
+      toggleDark={() => setDark(!dark)}
+      sidebarOpen={sidebarOpen}
+      toggleSidebar={toggleSidebar}
+    >
+      <IonRouterOutlet>
+        <Route path="/" exact>
+          <Redirect to="/home" />
+        </Route>
+        <Route path="/home" exact component={Home} />
+        <Route path="/about" exact component={About} />
+      </IonRouterOutlet>
+    </MainLayout>
   );
 }
