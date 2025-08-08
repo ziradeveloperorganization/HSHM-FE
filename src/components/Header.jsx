@@ -1,22 +1,21 @@
 import React from 'react';
 import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonIcon } from '@ionic/react';
-import { sunny, moon } from 'ionicons/icons';
-import { Link } from 'react-router-dom';
+import { sunny, moon, menu } from 'ionicons/icons';
 
-export default function Header({ dark, toggleDark }) {
+export default function Header({ dark, toggleDark, toggleSidebar }) {
   return (
     <IonHeader>
       <IonToolbar>
+        {/* Sidebar toggle button */}
+        <IonButtons slot="start">
+          <IonButton onClick={toggleSidebar}>
+            <IonIcon icon={menu} />
+          </IonButton>
+        </IonButtons>
+
         <IonTitle>My App</IonTitle>
 
-        {/* Navigation Links */}
-        {/* <nav style={{ marginLeft: '20px' }}>
-          <Link to="/" style={{ marginRight: '10px' }}>Home</Link>
-          <Link to="/about" style={{ marginRight: '10px' }}>About</Link>
-          <Link to="/login">Login</Link>
-        </nav> */}
-
-        {/* Theme Toggle Button */}
+        {/* Theme Toggle */}
         <IonButtons slot="end">
           <IonButton onClick={toggleDark}>
             <IonIcon icon={dark ? sunny : moon} />
