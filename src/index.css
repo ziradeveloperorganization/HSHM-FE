@@ -1,6 +1,4 @@
-@import "tailwindcss";
-
-/* Theme variables */
+/* Ionic Theme Variables */
 :root {
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -66,7 +64,91 @@
   --ion-color-dark-tint: #383a3e;
 }
 
-/* Custom Tailwind utilities for better integration */
+/* Dark Theme Overrides */
+.dark {
+  --ion-color-primary: #4c8dff;
+  --ion-color-primary-rgb: 76, 141, 255;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0, 0, 0;
+  --ion-color-primary-shade: #3b78e0;
+  --ion-color-primary-tint: #6aabff;
+
+  --ion-color-secondary: #50c8ff;
+  --ion-color-secondary-rgb: 80, 200, 255;
+  --ion-color-secondary-contrast: #000000;
+  --ion-color-secondary-contrast-rgb: 0, 0, 0;
+  --ion-color-secondary-shade: #3db3e0;
+  --ion-color-secondary-tint: #7fd2ff;
+
+  --ion-color-tertiary: #6370ff;
+  --ion-color-tertiary-rgb: 99, 112, 255;
+  --ion-color-tertiary-contrast: #000000;
+  --ion-color-tertiary-contrast-rgb: 0, 0, 0;
+  --ion-color-tertiary-shade: #565ee0;
+  --ion-color-tertiary-tint: #7f8bff;
+
+  --ion-color-success: #42d77d;
+  --ion-color-success-rgb: 66, 215, 125;
+  --ion-color-success-contrast: #000000;
+  --ion-color-success-contrast-rgb: 0, 0, 0;
+  --ion-color-success-shade: #37ba68;
+  --ion-color-success-tint: #60dd96;
+
+  --ion-color-warning: #ffca22;
+  --ion-color-warning-rgb: 255, 202, 34;
+  --ion-color-warning-contrast: #000000;
+  --ion-color-warning-contrast-rgb: 0, 0, 0;
+  --ion-color-warning-shade: #e0ac08;
+  --ion-color-warning-tint: #ffda4c;
+
+  --ion-color-danger: #ed576b;
+  --ion-color-danger-rgb: 237, 87, 107;
+  --ion-color-danger-contrast: #000000;
+  --ion-color-danger-contrast-rgb: 0, 0, 0;
+  --ion-color-danger-shade: #d34b5f;
+  --ion-color-danger-tint: #f27789;
+
+  --ion-color-medium: #9d9fa6;
+  --ion-color-medium-rgb: 157, 159, 166;
+  --ion-color-medium-contrast: #000000;
+  --ion-color-medium-contrast-rgb: 0, 0, 0;
+  --ion-color-medium-shade: #8a8b92;
+  --ion-color-medium-tint: #b0b1b7;
+
+  --ion-color-light: #f5f6f9;
+  --ion-color-light-rgb: 245, 246, 249;
+  --ion-color-light-contrast: #000000;
+  --ion-color-light-contrast-rgb: 0, 0, 0;
+  --ion-color-light-shade: #d7d8da;
+  --ion-color-light-tint: #f7f8fa;
+
+  --ion-color-dark: #383a3e;
+  --ion-color-dark-rgb: 56, 58, 62;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #2f3134;
+  --ion-color-dark-tint: #4c4e52;
+}
+
+/* Custom styles (replacing Tailwind utilities) */
+
+/* Previously: .ion-page {@apply min-h-screen;} */
 .ion-page {
-  @apply min-h-screen;
+  min-height: 100vh;
+}
+
+/* Button styling */
+button {
+  background-color: var(--ion-color-primary);
+  color: var(--ion-color-primary-contrast);
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--ion-color-primary-shade);
 }
