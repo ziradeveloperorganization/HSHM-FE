@@ -51,6 +51,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
   const handleLogout = () => {
     console.log("Logging out...");
     history.push("/login");
+    toggleSidebar(false);
   };
 
   return (

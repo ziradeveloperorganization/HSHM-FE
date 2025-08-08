@@ -1,40 +1,69 @@
 /* index.css */
-/* === Bootstrap Buttons mapped to Ionic variables === */
+/* === Color Variables Only === */
+:root {
+  /* Primary Color (Red) */
+  --ion-color-primary: #F02F34;
+  --ion-color-primary-rgb: 240, 47, 52;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #d3292e;
+  --ion-color-primary-tint: #f24449;
+
+  /* Secondary Color (Peach) */
+  --ion-color-secondary: #F7D3BB;
+  --ion-color-secondary-rgb: 247, 211, 187;
+  --ion-color-secondary-contrast: #000000;
+  --ion-color-secondary-contrast-rgb: 0, 0, 0;
+  --ion-color-secondary-shade: #d9baa5;
+  --ion-color-secondary-tint: #f8d7c2;
+
+  /* Standard Ionic colors remain unchanged */
+  --ion-color-tertiary: #7044ff;
+  --ion-color-success: #10dc60;
+  --ion-color-warning: #ffce00;
+  --ion-color-danger: #f04141;
+  --ion-color-dark: #222428;
+  --ion-color-medium: #92949c;
+  --ion-color-light: #f4f5f8;
+}
+
+/* Dark mode adjustments */
+html.dark {
+  --ion-color-secondary: #e8c4a8;
+  --ion-color-secondary-rgb: 232, 196, 168;
+  --ion-color-secondary-contrast: #000000;
+  --ion-color-secondary-shade: #ccac92;
+  --ion-color-secondary-tint: #eacab1;
+}
+
+/* === Only necessary Bootstrap mappings === */
 .btn-primary {
   background-color: var(--ion-color-primary) !important;
   border-color: var(--ion-color-primary) !important;
+  color: var(--ion-color-primary-contrast) !important;
 }
+
 .btn-primary:hover {
   background-color: var(--ion-color-primary-shade) !important;
   border-color: var(--ion-color-primary-shade) !important;
 }
 
-/* === Bootstrap Text Colors === */
 .text-primary {
   color: var(--ion-color-primary) !important;
 }
+
 .text-secondary {
   color: var(--ion-color-secondary) !important;
 }
 
-/* === Bootstrap Background Colors === */
 .bg-primary {
   background-color: var(--ion-color-primary) !important;
+  color: var(--ion-color-primary-contrast) !important;
 }
+
 .bg-secondary {
   background-color: var(--ion-color-secondary) !important;
-}
-
-/* === Ionic Theme Base (Light) === */
-:root {
-  --ion-background-color: #ffffff;
-  --ion-text-color: #000000;
-}
-
-/* === Ionic Theme (Dark) === */
-html.dark {
-  --ion-background-color: #121212;
-  --ion-text-color: #ffffff;
+  color: var(--ion-color-secondary-contrast) !important;
 }
 
 /* === Main Body Styling (applied only in MainLayout) === */
