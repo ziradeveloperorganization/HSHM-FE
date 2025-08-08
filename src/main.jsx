@@ -1,3 +1,4 @@
+import './i18n';
 // 1. Bootstrap core
 import 'bootstrap/dist/css/bootstrap.min.css';
 

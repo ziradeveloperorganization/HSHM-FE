@@ -1,0 +1,17 @@
+{
+  "header": {
+    "search": "Search items...",
+    "login": "Login",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Logout"
+  },
+  "sidebar": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Home"
+  }
+}
