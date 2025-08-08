@@ -1,33 +1,56 @@
-/* Login Page Styling with Ionic Variables */
+/* Login Page Styling with Ionic Variables and Animations */
 .login-page {
   --background: linear-gradient(
     135deg,
     var(--ion-color-primary),
     var(--ion-color-secondary)
   );
+  overflow: hidden;
 }
 
 .login-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100%;
+  min-height: 100vh;
   padding: 20px;
 }
 
 .login-card {
-  background: var(--ion-background-color);
+  background: rgba(var(--ion-background-color-rgb), 0.9);
+  backdrop-filter: blur(10px);
   color: var(--ion-text-color);
-  padding: 2rem;
-  border-radius: 15px;
-  max-width: 400px;
+  padding: 2.5rem;
+  border-radius: 20px;
+  max-width: 420px;
   width: 100%;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
   text-align: center;
+  animation: cardDrop 0.8s ease-out forwards;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(-100vh);
+}
+
+@keyframes cardDrop {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(20px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .login-card h2 {
   margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: var(--ion-color-primary);
 }
 
 .login-card p {
@@ -37,41 +60,71 @@
 
 .form-group {
   text-align: left;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
   font-weight: 500;
+  color: var(--ion-color-dark-tint);
+}
+
+.form-group label ion-icon {
+  margin-right: 8px;
+  font-size: 1.2rem;
+  color: var(--ion-color-medium);
 }
 
 .form-group input {
   width: 100%;
-  padding: 0.75rem;
-  border-radius: 8px;
-  border: 1px solid var(--ion-color-light-shade);
-  background: var(--ion-background-color);
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 2px solid var(--ion-color-light-shade);
+  background: rgba(var(--ion-background-color-rgb), 0.8);
   color: var(--ion-text-color);
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  padding-left: 2.5rem;
+}
+
+.form-group input:focus {
+  border-color: var(--ion-color-primary);
+  box-shadow: 0 0 0 3px rgba(var(--ion-color-primary-rgb), 0.2);
+  outline: none;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 2.5rem;
+  color: var(--ion-color-medium);
+  font-size: 1.2rem;
 }
 
 .btn-primary {
   width: 100%;
-  padding: 0.75rem;
+  padding: 1rem;
   background: var(--ion-color-primary);
   color: var(--ion-color-primary-contrast);
   font-weight: bold;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(var(--ion-color-primary-rgb), 0.3);
 }
 
 .btn-primary:hover {
   background: var(--ion-color-primary-shade);
+  box-shadow: 0 6px 20px rgba(var(--ion-color-primary-rgb), 0.4);
+  transform: translateY(-2px);
 }
 
 .login-footer {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: space-between;
 }
@@ -79,4 +132,85 @@
 .login-footer a {
   color: var(--ion-color-primary);
   font-size: 0.9rem;
+  text-decoration: none;
+  position: relative;
+}
+
+.login-footer a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--ion-color-primary);
+  transition: width 0.3s ease;
+}
+
+.login-footer a:hover::after {
+  width: 100%;
+}
+
+/* Decorative Icons */
+.decorative-icon {
+  position: fixed;
+  font-size: 3rem;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.decorative-icon.lock {
+  top: 20%;
+  left: 10%;
+  animation: floating 3s ease-in-out infinite;
+}
+
+.decorative-icon.mail {
+  top: 60%;
+  right: 10%;
+  animation: floating 3s ease-in-out infinite 0.5s;
+}
+
+@keyframes floating {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Social Icons */
+.social-login {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.social-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--ion-color-light-shade);
+  color: var(--ion-color-medium);
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background: rgba(var(--ion-color-primary-rgb), 0.1);
+  color: var(--ion-color-primary);
+  border-color: var(--ion-color-primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .login-card {
+    padding: 1.5rem;
+  }
+  
+  .decorative-icon {
+    font-size: 2rem;
+  }
 }
