@@ -1,12 +1,122 @@
-/* Profile popover styles */
+/* Modern Profile Popover - Mobile Optimized */
 .profile-popover {
-  --width: 200px;
-  --min-width: 200px;
-  --max-width: 200px;
+  --width: 240px;
+  --background: var(--ion-background-color);
+  --box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  --border-radius: 14px;
+  --padding: 8px 0;
+  --color: var(--ion-text-color);
+  --ion-item-background: transparent;
+  --ion-item-color: inherit;
 }
 
 .profile-popover::part(content) {
-  transform-origin: right top;
-  margin-top: 5px;
-  margin-right: 5px;
+  transform-origin: top right;
+  border-radius: var(--border-radius);
+  margin-top: 8px;
+  margin-right: 8px;
+  background: var(--background);
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: var(--width);
+  overflow: hidden;
+}
+
+/* Remove all hover effects completely */
+.profile-popover ion-item {
+  --inner-border-width: 0;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --inner-padding-end: 0;
+}
+
+.profile-popover ion-item::part(native) {
+  --min-height: 48px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  margin: 0 8px;
+  width: calc(100% - 16px);
+  transition: all 0.15s ease;
+  background: transparent;
+}
+
+/* Only use active state - no hover at all */
+.profile-popover ion-item:active {
+  background: rgba(var(--ion-color-primary-rgb), 0.1);
+  color: var(--ion-color-primary);
+}
+
+/* Add ripple effect for better mobile feedback */
+.profile-popover ion-item::part(native) {
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-popover ion-item:active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(var(--ion-color-primary-rgb), 0.1);
+  border-radius: 8px;
+  animation: ripple 0.3s ease-out;
+}
+
+@keyframes ripple {
+  from {
+    opacity: 1;
+    transform: scale(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* Icons styling */
+.profile-popover ion-icon {
+  color: var(--ion-color-medium-shade);
+  font-size: 20px;
+  margin-right: 16px;
+}
+
+/* Selected language highlight */
+.profile-popover .selected-language {
+  font-weight: 600;
+  color: var(--ion-color-primary);
+}
+
+/* Mobile-friendly animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-popover::part(content) {
+  animation: fadeIn 0.15s ease-out;
+}
+
+/* Mobile-specific adjustments */
+@media (max-width: 768px) {
+  .profile-popover::part(content) {
+    margin: 4px;
+    transform-origin: top center;
+    width: calc(100% - 8px);
+    max-width: 280px;
+  }
+  
+  .profile-popover ion-item::part(native) {
+    --min-height: 52px;
+  }
 }
