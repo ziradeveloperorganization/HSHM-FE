@@ -1,7 +1,7 @@
 import React from 'react';
-import { IonPage, IonContent } from '@ionic/react';
-import Header from '../components/Header';
+import { IonPage, IonContent, IonHeader, IonFooter } from '@ionic/react';
 import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default function MainLayout({ children, dark, toggleDark, sidebarOpen, toggleSidebar }) {
@@ -10,13 +10,17 @@ export default function MainLayout({ children, dark, toggleDark, sidebarOpen, to
       <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
 
       <IonPage id="main">
-        <Header dark={dark} toggleDark={toggleDark} toggleSidebar={toggleSidebar} />
-        
-        <IonContent className="main-body">
+        <IonHeader>
+          <Header dark={dark} toggleDark={toggleDark} toggleSidebar={toggleSidebar} />
+        </IonHeader>
+
+        <IonContent className="main-body" scrollY={false}>
           {children}
         </IonContent>
 
-        <Footer />
+        <IonFooter>
+          <Footer />
+        </IonFooter>
       </IonPage>
     </>
   );

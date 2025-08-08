@@ -13,9 +13,6 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
-// 3. Our theme overrides
-import './styles/bootstrap-overrides.css';
-
 // 4. Our app styles
 import './index.css';
 
