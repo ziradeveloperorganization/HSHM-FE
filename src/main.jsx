@@ -1,5 +1,4 @@
-
-import './index.css'; // Import global styles
+import './index.css'; 
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/normalize.css';
 import '@ionic/react/css/structure.css';
