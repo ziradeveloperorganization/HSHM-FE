@@ -63,14 +63,14 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
       ></div>
 
       {/* Mobile toggle button */}
-      {isMobile && (
+      {/* {isMobile && (
         <button
           className="sidebar-toggle-btn btn btn-primary d-lg-none"
           onClick={() => toggleSidebar()}
         >
           <IonIcon icon={isOpen ? 'close-outline' : 'menu-outline'} />
         </button>
-      )}
+      )} */}
 
       {/* Sidebar Panel */}
       <div className={`sidebar-panel ${isOpen ? 'open' : ''}`}>
