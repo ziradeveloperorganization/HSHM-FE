@@ -1,0 +1,29 @@
+.card {
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--ion-background-color);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Skeleton Loading Styles */
+ion-skeleton-text {
+  --background: rgba(var(--ion-color-medium-rgb), 0.2);
+  --background-rgb: var(--ion-color-medium-rgb);
+  border-radius: 4px;
+}
+
+/* Dark mode skeleton styles */
+html.dark ion-skeleton-text {
+  --background: rgba(var(--ion-color-light-rgb), 0.1);
+  --background-rgb: var(--ion-color-light-rgb);
+}
+
+/* Card transition */
+.card {
+  transition: all 0.3s ease;
+}
+

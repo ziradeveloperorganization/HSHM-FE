@@ -6,6 +6,7 @@ import MainLayout from "../layouts/MainLayout";
 import Login from "../pages/auth/Login";
 import Home from "../pages/content/Home";
 import About from "../pages/content/About";
+import ProductDetail from "../pages/content/Product/ProductDetail";
 
 export default function AppRoutes() {
   const [dark, setDark] = useState(false);
@@ -52,6 +53,7 @@ export default function AppRoutes() {
         </Route>
         <Route path="/home" exact component={Home} />
         <Route path="/about" exact component={About} />
+        <Route path="/product/:id" exact component={ProductDetail} />
       </IonRouterOutlet>
     </MainLayout>
   );
