@@ -239,9 +239,9 @@ export default function About() {
                   {commonData.DeveloperEmail}
                 </IonButton>
 
-                <IonButton
+                 {/* <IonButton
                   fill="clear"
-                  href="https://wa.me/yourphonenumber"
+                  href={`https://wa.me/${commonData.DeveloperWhatsApp}`}
                   className="contact-item"
                 >
                   <IonIcon icon={logoWhatsapp} slot="start" />
@@ -264,7 +264,8 @@ export default function About() {
                 >
                   <IonIcon icon={locationOutline} slot="start" />
                   Based in India
-                </IonButton>
+                </IonButton> */}
+                
               </div>
             </IonCardContent>
           </IonCard>
