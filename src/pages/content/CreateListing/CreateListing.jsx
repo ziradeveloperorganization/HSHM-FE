@@ -197,7 +197,7 @@ export default function CreateListing() {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/home" />
+            <IonBackButton onClick={() => history.goBack()} />
           </IonButtons>
           <IonTitle>Create Listing</IonTitle>
           <IonButtons slot="end">

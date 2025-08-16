@@ -98,7 +98,7 @@ const ProductDetail = () => {
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="start">
-              <IonBackButton defaultHref="/home" />
+              <IonBackButton onClick={() => history.goBack()} />
             </IonButtons>
             <IonTitle>Loading...</IonTitle>
           </IonToolbar>
@@ -133,7 +133,7 @@ const ProductDetail = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/home" />
+            <IonBackButton onClick={() => history.goBack()} />
           </IonButtons>
           <IonTitle>{product.title}</IonTitle>
           <IonButtons slot="end">

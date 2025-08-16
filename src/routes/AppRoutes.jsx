@@ -52,7 +52,7 @@ export default function AppRoutes() {
       sidebarOpen={sidebarOpen}
       toggleSidebar={toggleSidebar}
     >
-      <IonRouterOutlet>
+      <IonRouterOutlet key={location.key}>
         <Route path="/" exact>
           <Redirect to="/home" />
         </Route>

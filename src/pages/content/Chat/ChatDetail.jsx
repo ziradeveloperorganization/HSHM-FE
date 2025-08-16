@@ -22,8 +22,10 @@ import { sendOutline, imageOutline, callOutline, videocamOutline } from 'ionicon
 import { useParams } from 'react-router-dom';
 import { messageService } from '../../../services/mockServices';
 import { motion } from 'framer-motion';
+import { useHistory } from 'react-router-dom';
 
 export default function ChatDetail() {
+  const history = useHistory();
   const { conversationId } = useParams();
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
@@ -107,7 +109,7 @@ export default function ChatDetail() {
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="start">
-              <IonBackButton defaultHref="/chat" />
+              <IonBackButton onClick={() => history.goBack()} />
             </IonButtons>
             <IonTitle>Loading...</IonTitle>
           </IonToolbar>
@@ -126,7 +128,7 @@ export default function ChatDetail() {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/chat" />
+            <IonBackButton onClick={() => history.goBack()} />
           </IonButtons>
           
           <div style={{ display: 'flex', alignItems: 'center', padding: '0 16px' }}>
