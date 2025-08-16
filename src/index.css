@@ -145,15 +145,6 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--ion-text-color);
 }
 
-ion-content {
-  --padding-top: calc(var(--ion-safe-area-top) + 56px); /* 56px is default toolbar height */
-}
-
-ion-modal ion-content,
-ion-popover ion-content {
-  --padding-top: 0;
-}
-
 /* === Icon Colors === */
 ion-button.fill-clear ion-icon {
   color: var(--ion-color-dark) !important;
