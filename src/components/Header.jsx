@@ -28,26 +28,24 @@ import {
 } from 'ionicons/icons';
 import { useTranslation } from 'react-i18next';
 import { commonData } from '../core/commondatas';
+import { useAuth } from '../contexts/AuthContext';
 import '../assets/css/component/Header.css';
-
-const dummyUser = {
-  loggedIn: true,
-  username: 'John Doe',
-  avatarUrl: 'https://i.pravatar.cc/40',
-};
 
 export default function Header({ dark, toggleDark, toggleSidebar }) {
   const [searchText, setSearchText] = useState('');
   const [profilePopoverOpen, setProfilePopoverOpen] = useState(false);
   const [showLanguageMenu, setShowLanguageMenu] = useState(false);
-  const [user, setUser] = useState(dummyUser);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
   const inputRef = useRef(null);
-  const profileButtonRef = useRef(null);
-
+  const { user, logout } = useAuth();
   const { i18n } = useTranslation();
+
+  const languages = [
+    { code: 'en', name: 'English' },
+    { code: 'ta', name: 'Tamil' },
+  ];
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -57,25 +55,16 @@ export default function Header({ dark, toggleDark, toggleSidebar }) {
 
   const openLocationModal = () => alert('Open location modal (to be implemented)');
   const onLogout = () => {
-    alert('Logging out...');
-    setUser({ loggedIn: false });
+    logout?.();
     setProfilePopoverOpen(false);
   };
-  const onLogin = () => alert('Show login screen...');
-  const doSearch = (query) => {
-    if (query.trim()) alert(`Searching for: ${query}`);
-  };
+
   const onMobileSearchSubmit = () => {
     if (searchText.trim()) {
-      doSearch(searchText);
+      alert(`Searching for: ${searchText}`);
       setMobileSearchOpen(false);
     }
   };
-
-  const languages = [
-    { code: 'en', name: 'English' },
-    { code: 'ta', name: 'Tamil' },
-  ];
 
   const handleLanguageChange = (langCode) => {
     i18n.changeLanguage(langCode);
@@ -84,23 +73,17 @@ export default function Header({ dark, toggleDark, toggleSidebar }) {
   };
 
   return (
-    <IonHeader className="ion-no-border">
+    <IonHeader className={`ion-no-border ${dark ? 'dark-mode' : ''}`}>
       <IonToolbar>
         {!mobileSearchOpen ? (
           <>
             <IonButtons slot="start">
-              <IonButton
-                fill="clear"
-                className="icon-button"
-                style={{ '--color': dark ? 'var(--ion-color-light)' : 'var(--ion-color-dark)' }}
-                onClick={toggleSidebar}
-              >
+              <IonButton fill="clear" onClick={toggleSidebar}>
                 <IonIcon icon={menu} />
               </IonButton>
             </IonButtons>
 
             <div
-              className="header-content"
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -108,30 +91,21 @@ export default function Header({ dark, toggleDark, toggleSidebar }) {
                 width: '100%',
               }}
             >
-              {/* Brand */}
-              <div
-                className="app-brand"
-                style={{ display: 'flex', alignItems: 'center', marginRight: 'auto' }}
-              >
+              {/* Logo + Title */}
+              <div style={{ display: 'flex', alignItems: 'center', marginRight: 'auto' }}>
                 <img
                   src={commonData.applogo}
                   alt="Logo"
                   style={{ height: 32, width: 32, marginRight: 8 }}
                 />
                 {!isMobile && (
-                  <IonTitle
-                    style={{
-                      padding: 0,
-                      fontSize: '1.1rem',
-                      color: dark ? 'var(--ion-color-light)' : 'var(--ion-color-dark)',
-                    }}
-                  >
+                  <IonTitle style={{ padding: 0, fontSize: '1.1rem' }}>
                     {commonData.appName}
                   </IonTitle>
                 )}
               </div>
 
-              {/* Desktop Search */}
+              {/* Search - desktop only */}
               {!isMobile && (
                 <div style={{ flex: 1, maxWidth: 400, margin: '0 16px' }}>
                   <IonInput
@@ -139,21 +113,21 @@ export default function Header({ dark, toggleDark, toggleSidebar }) {
                     onIonInput={(e) => setSearchText(e.detail.value || '')}
                     placeholder="Search items..."
                     clearInput
+                    onKeyDown={(e) => e.key === 'Enter' && onMobileSearchSubmit()}
                     style={{
-                      background: dark ? 'var(--ion-color-dark)' : 'var(--ion-color-light)',
-                      color: dark ? 'var(--ion-color-light)' : 'var(--ion-color-dark)',
+                      background: 'var(--ion-color-step-50)',
+                      color: 'var(--ion-text-color)',
                       borderRadius: '20px',
                       padding: '8px 16px',
                     }}
-                    onKeyDown={(e) => e.key === 'Enter' && doSearch(searchText)}
                   />
                 </div>
               )}
 
-              {/* Action Buttons */}
+              {/* Right-side buttons */}
               <IonButtons slot="end" style={{ gap: '4px' }}>
-                <IonButton fill="clear" className="icon-button" onClick={openLocationModal}>
-                  <IonIcon icon={locationSharp} slot="icon-only" />
+                <IonButton fill="clear" onClick={openLocationModal}>
+                  <IonIcon icon={locationSharp} />
                 </IonButton>
 
                 {isMobile && (
@@ -166,36 +140,24 @@ export default function Header({ dark, toggleDark, toggleSidebar }) {
                   <IonIcon icon={dark ? sunny : moon} />
                 </IonButton>
 
-                {user.loggedIn ? (
+                {user ? (
                   <>
                     <IonButton
-                      ref={profileButtonRef}
-                      id="profile-button"
+                      id="main-profile-button"
                       fill="clear"
-                      className="icon-button"
                       onClick={() => {
                         setProfilePopoverOpen(true);
                         setShowLanguageMenu(false);
                       }}
                     >
                       <IonAvatar style={{ width: 32, height: 32 }}>
-                        <img src={user.avatarUrl} alt="Profile" />
+                        <img src={user?.avatar || 'https://i.pravatar.cc/40'} alt="Profile" />
                       </IonAvatar>
                       {!isMobile && (
-                        <span
-                          style={{
-                            marginLeft: 8,
-                            maxWidth: 100,
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                          }}
-                        >
-                          {user.username}
-                        </span>
+                        <span style={{ marginLeft: 8 }}>{user?.fullName || 'User'}</span>
                       )}
                     </IonButton>
 
-                    {/* Profile + Language Popover */}
                     <IonPopover
                       isOpen={profilePopoverOpen}
                       onDidDismiss={() => {
@@ -204,29 +166,16 @@ export default function Header({ dark, toggleDark, toggleSidebar }) {
                       }}
                       side="bottom"
                       alignment="end"
-                      trigger="profile-button"
-                      cssClass="profile-popover"
+                      trigger="main-profile-button"
                     >
                       <IonList>
                         {!showLanguageMenu ? (
                           <>
-                            <IonItem
-                              button
-                              onClick={() => {
-                                alert('Go to Profile');
-                                setProfilePopoverOpen(false);
-                              }}
-                            >
+                            <IonItem button onClick={() => alert('Go to Profile')}>
                               <IonIcon icon={personCircle} slot="start" />
                               <IonLabel>Profile</IonLabel>
                             </IonItem>
-                            <IonItem
-                              button
-                              onClick={() => {
-                                alert('Go to Settings');
-                                setProfilePopoverOpen(false);
-                              }}
-                            >
+                            <IonItem button onClick={() => alert('Go to Settings')}>
                               <IonIcon icon={settings} slot="start" />
                               <IonLabel>Settings</IonLabel>
                             </IonItem>
@@ -260,13 +209,13 @@ export default function Header({ dark, toggleDark, toggleSidebar }) {
                     </IonPopover>
                   </>
                 ) : (
-                  <IonButton onClick={onLogin}>Login</IonButton>
+                  <IonButton onClick={() => alert('Show login screen...')}>Login</IonButton>
                 )}
               </IonButtons>
             </div>
           </>
         ) : (
-          // Mobile Search
+          // Mobile search bar
           <div
             style={{
               display: 'flex',
@@ -285,17 +234,17 @@ export default function Header({ dark, toggleDark, toggleSidebar }) {
               onIonInput={(e) => setSearchText(e.detail.value || '')}
               placeholder="Search items..."
               clearInput
-              style={{
-                flex: 1,
-                background: dark ? 'var(--ion-color-dark)' : 'var(--ion-color-light)',
-                color: dark ? 'var(--ion-color-light)' : 'var(--ion-color-dark)',
-                borderRadius: '20px',
-                padding: '8px 16px',
-                margin: '0 8px',
-              }}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') onMobileSearchSubmit();
                 if (e.key === 'Escape') setMobileSearchOpen(false);
+              }}
+              style={{
+                flex: 1,
+                background: 'var(--ion-color-step-50)',
+                color: 'var(--ion-text-color)',
+                borderRadius: '20px',
+                padding: '8px 16px',
+                margin: '0 8px',
               }}
             />
 

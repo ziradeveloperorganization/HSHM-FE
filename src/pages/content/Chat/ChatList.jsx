@@ -120,6 +120,7 @@ export default function ChatList() {
 
       <div className="ion-padding-horizontal ion-padding-top">
         <IonSearchbar
+          style={{ color: 'var(--ion-text-color)' }}
           value={searchText}
           onIonInput={(e) => setSearchText(e.detail.value)}
           placeholder="Search conversations..."
@@ -129,18 +130,18 @@ export default function ChatList() {
 
       {filteredConversations.length === 0 ? (
         <div className="ion-text-center ion-padding" style={{ marginTop: '50%' }}>
-          <IonIcon 
-            icon={chatbubbleOutline} 
-            style={{ fontSize: '4rem', color: 'var(--ion-color-medium)' }} 
+          <IonIcon
+            icon={chatbubbleOutline}
+            style={{ fontSize: '4rem', color: 'var(--ion-color-medium)' }}
           />
-          <h3>No conversations yet</h3>
-          <p>Start browsing items to connect with sellers!</p>
+          <h3 style={{ color: 'var(--ion-text-color)' }}>No conversations yet</h3>
+          <p style={{ color: 'var(--ion-color-medium)' }}>Start browsing items to connect with sellers!</p>
         </div>
       ) : (
         <IonList>
           {filteredConversations.map((conversation, index) => {
             const otherUser = conversation.participants.find(p => p.id !== 1);
-            
+
             return (
               <motion.div
                 key={conversation.id}
@@ -148,32 +149,34 @@ export default function ChatList() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <IonItem 
-                  button 
+                <IonItem
+                  button
                   onClick={() => handleConversationClick(conversation)}
                   className="conversation-item"
                 >
                   <IonAvatar slot="start">
                     <img src={otherUser.avatar} alt={otherUser.fullName} />
                   </IonAvatar>
-                  
+
                   <IonLabel>
-                    <h2 style={{ fontWeight: 'bold' }}>
+                    <h2 style={{ fontWeight: 'bold', color: 'var(--ion-text-color)' }}>
                       {otherUser.fullName}
                     </h2>
                     <h3 style={{ color: 'var(--ion-color-medium)', fontSize: '0.9rem' }}>
                       {conversation.listing.title}
                     </h3>
-                    <p style={{ 
-                      color: conversation.unreadCount > 0 ? 'var(--ion-color-dark)' : 'var(--ion-color-medium)',
+                    <p style={{
+                      color: conversation.unreadCount > 0
+                        ? 'var(--ion-text-color)'
+                        : 'var(--ion-color-medium)',
                       fontWeight: conversation.unreadCount > 0 ? 'bold' : 'normal'
                     }}>
                       {conversation.lastMessage.message}
                     </p>
                   </IonLabel>
-                  
+
                   <div slot="end" className="ion-text-end">
-                    <IonText color="medium" style={{ fontSize: '0.8rem' }}>
+                    <IonText color="medium" style={{ fontSize: '0.8rem', display: 'flex', alignItems: 'center' }}>
                       <IonIcon icon={timeOutline} style={{ marginRight: '4px' }} />
                       {formatTime(conversation.lastMessage.timestamp)}
                     </IonText>

@@ -92,7 +92,7 @@ const router = useIonRouter();
             </motion.div>
             <div className="card-body d-flex flex-column">
               <h5 className="card-title fw-bold">{product.name}</h5>
-              <p className="card-text text-muted mb-2">{product.description}</p>
+              <p style={{ color: 'var(--ion-color-medium)' }} className="mb-2">{product.description}</p>
               <h6 className="text-primary mb-2">
                 <IonIcon icon={pricetagOutline} /> ${product.price}
               </h6>

@@ -1,4 +1,9 @@
 /* Modern Profile Popover - Mobile Optimized */
+.dark-mode ion-input {
+  --color: var(--ion-text-color);
+  --placeholder-color: var(--ion-color-step-600);
+}
+
 .profile-popover {
   --width: 240px;
   --background: var(--ion-background-color);
@@ -72,6 +77,7 @@
     opacity: 1;
     transform: scale(0);
   }
+
   to {
     opacity: 0;
     transform: scale(1);
@@ -97,6 +103,7 @@
     opacity: 0;
     transform: translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -115,7 +122,7 @@
     width: calc(100% - 8px);
     max-width: 280px;
   }
-  
+
   .profile-popover ion-item::part(native) {
     --min-height: 52px;
   }

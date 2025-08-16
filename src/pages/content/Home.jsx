@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { 
-  IonContent, IonSearchbar, IonSegment, IonSegmentButton, IonLabel, 
+import {
+  IonContent, IonSearchbar, IonSegment, IonSegmentButton, IonLabel,
   IonButton, IonIcon, IonGrid, IonRow, IonCol, IonCard, IonCardContent,
   IonRefresher, IonRefresherContent, IonText, IonSkeletonText
 } from "@ionic/react";
@@ -53,11 +53,11 @@ export default function Home() {
 
   const filterListings = async () => {
     const filters = {};
-    
+
     if (searchText.trim()) {
       filters.search = searchText;
     }
-    
+
     if (selectedCategory !== 'all') {
       filters.category = selectedCategory;
     }
@@ -89,16 +89,16 @@ export default function Home() {
         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
           <motion.h1
             className="text-primary"
-            style={{ margin: 0, flex: 1 }}
+            style={{ margin: 0, flex: 1, color: 'var(--ion-text-color)' }}
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
             Marketplace
           </motion.h1>
-          
-          <IonButton 
-            fill="solid" 
+
+          <IonButton
+            fill="solid"
             onClick={() => history.push('/create-listing')}
           >
             <IonIcon icon={addOutline} slot="start" />
@@ -112,7 +112,12 @@ export default function Home() {
           onIonInput={(e) => setSearchText(e.detail.value)}
           placeholder="Search items..."
           showClearButton="focus"
-          style={{ marginBottom: '16px' }}
+          style={{
+            marginBottom: '16px',
+            '--color': 'var(--ion-text-color)',  // Fix for dark mode
+            '--placeholder-color': 'var(--ion-color-medium)',
+            '--icon-color': 'var(--ion-color-medium)'
+          }}
         />
 
         {/* Category Filter */}
@@ -140,20 +145,20 @@ export default function Home() {
 
         {/* View Controls */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-          <IonText color="medium">
+          <IonText style={{ color: 'var(--ion-text-color)' }}>
             {listings.length} items found
           </IonText>
-          
+
           <div>
-            <IonButton 
-              fill={viewMode === 'grid' ? 'solid' : 'clear'} 
+            <IonButton
+              fill={viewMode === 'grid' ? 'solid' : 'clear'}
               size="small"
               onClick={() => setViewMode('grid')}
             >
               <IonIcon icon={gridOutline} />
             </IonButton>
-            <IonButton 
-              fill={viewMode === 'list' ? 'solid' : 'clear'} 
+            <IonButton
+              fill={viewMode === 'list' ? 'solid' : 'clear'}
               size="small"
               onClick={() => setViewMode('list')}
             >
@@ -198,13 +203,13 @@ export default function Home() {
 
         {/* Empty State */}
         {!loading && listings.length === 0 && (
-          <div className="ion-text-center" style={{ marginTop: '50%' }}>
-            <IonIcon 
-              icon={gridOutline} 
-              style={{ fontSize: '4rem', color: 'var(--ion-color-medium)' }} 
+          <div className="ion-text-center" style={{ marginTop: '50%', color: 'var(--ion-text-color)' }}>
+            <IonIcon
+              icon={gridOutline}
+              style={{ fontSize: '4rem', color: 'var(--ion-color-medium)' }}
             />
-            <h3>No items found</h3>
-            <p>Try adjusting your search or filters</p>
+            <h3 style={{ color: 'var(--ion-text-color)' }}>No items found</h3>
+            <p style={{ color: 'var(--ion-color-medium)' }}>Try adjusting your search or filters</p>
             <IonButton fill="outline" onClick={() => {
               setSearchText('');
               setSelectedCategory('all');
@@ -213,7 +218,7 @@ export default function Home() {
             </IonButton>
           </div>
         )}
-        </div>
+      </div>
     </IonContent>
   );
 }

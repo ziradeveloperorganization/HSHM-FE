@@ -5,7 +5,9 @@ export const mockUsers = [
     id: 1,
     username: "john_doe",
     email: "john@example.com",
+    password: "password123", // For demo purposes
     fullName: "John Doe",
+    role: "user",
     avatar: "https://i.pravatar.cc/150?img=1",
     phone: "+1234567890",
     location: {
@@ -23,7 +25,9 @@ export const mockUsers = [
     id: 2,
     username: "sarah_wilson",
     email: "sarah@example.com",
+    password: "password123",
     fullName: "Sarah Wilson",
+    role: "admin",
     avatar: "https://i.pravatar.cc/150?img=2",
     phone: "+1234567891",
     location: {
@@ -36,6 +40,26 @@ export const mockUsers = [
     rating: 4.9,
     totalListings: 8,
     completedDeals: 6
+  },
+  {
+    id: 3,
+    username: "admin_mike",
+    email: "admin@example.com",
+    password: "admin123",
+    fullName: "Mike Admin",
+    role: "superadmin",
+    avatar: "https://i.pravatar.cc/150?img=3",
+    phone: "+1234567892",
+    location: {
+      address: "789 Admin St, Uptown",
+      coordinates: { lat: 40.7831, lng: -73.9712 },
+      city: "New York",
+      state: "NY"
+    },
+    joinedDate: "2024-01-01",
+    rating: 5.0,
+    totalListings: 0,
+    completedDeals: 0
   }
 ];
 

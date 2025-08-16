@@ -1,37 +1,38 @@
 /* =========================================
    Bootstrap + Ionic Unified Theme Overrides
+   Modern Color Palette + Fixed Dark Mode
    ========================================= */
 
-/* === Ionic Color Variables === */
+/* === Ionic Color Variables (Light Mode) === */
 :root {
-  /* Primary Color (Red) */
-  --ion-color-primary: #F02F34;
-  --ion-color-primary-rgb: 240, 47, 52;
+  /* Modern Primary (Teal) */
+  --ion-color-primary: #0D9488;
+  --ion-color-primary-rgb: 13, 148, 136;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #d3292e;
-  --ion-color-primary-tint: #f24449;
+  --ion-color-primary-shade: #0b7f74;
+  --ion-color-primary-tint: #26a69a;
 
-  /* Secondary Color (Peach) */
-  --ion-color-secondary: #F7D3BB;
-  --ion-color-secondary-rgb: 247, 211, 187;
-  --ion-color-secondary-contrast: #000000;
-  --ion-color-secondary-contrast-rgb: 0, 0, 0;
-  --ion-color-secondary-shade: #d9baa5;
-  --ion-color-secondary-tint: #f8d7c2;
+  /* Modern Secondary (Indigo) */
+  --ion-color-secondary: #6366F1;
+  --ion-color-secondary-rgb: 99, 102, 241;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #5558d6;
+  --ion-color-secondary-tint: #7b7df4;
 
-  /* Standard Ionic colors */
-  --ion-color-tertiary: #7044ff;
-  --ion-color-success: #10dc60;
-  --ion-color-warning: #ffce00;
-  --ion-color-danger: #f04141;
-  --ion-color-dark: #222428;
-  --ion-color-medium: #92949c;
-  --ion-color-light: #f4f5f8;
+  /* Accent & Status Colors */
+  --ion-color-tertiary: #F97316; /* Orange */
+  --ion-color-success: #22C55E;  /* Fresh green */
+  --ion-color-warning: #FACC15;  /* Yellow */
+  --ion-color-danger: #EF4444;   /* Bright red */
+  --ion-color-dark: #1f2937;     /* Neutral dark gray */
+  --ion-color-medium: #6b7280;   /* Mid gray */
+  --ion-color-light: #f9fafb;    /* Soft off-white */
 
   /* Light mode background/text */
   --ion-background-color: #ffffff;
-  --ion-text-color: #000000;
+  --ion-text-color: #111827;
 
   /* Bootstrap color mapping */
   --bs-body-bg: var(--ion-background-color);
@@ -44,18 +45,33 @@
   --bs-info: var(--ion-color-medium);
 }
 
-/* === Dark Mode === */
+/* === Dark Mode (Fixed + Modern) === */
 html.dark {
-  --ion-color-secondary: #e8c4a8;
-  --ion-color-secondary-rgb: 232, 196, 168;
-  --ion-color-secondary-contrast: #000000;
-  --ion-color-secondary-shade: #ccac92;
-  --ion-color-secondary-tint: #eacab1;
+  /* Primary + Secondary */
+  --ion-color-primary: #2DD4BF;
+  --ion-color-primary-shade: #1fb2a1;
+  --ion-color-primary-tint: #3ee0cb;
 
-  --ion-background-color: #121212;
-  --ion-text-color: #ffffff;
+  --ion-color-secondary: #818CF8;
+  --ion-color-secondary-shade: #6770e5;
+  --ion-color-secondary-tint: #99a2fa;
 
-  /* Bootstrap dark mode mapping */
+  /* Accent colors */
+  --ion-color-tertiary: #FB923C;
+  --ion-color-success: #4ADE80;
+  --ion-color-warning: #FDE047;
+  --ion-color-danger: #F87171;
+
+  /* Background & text */
+  --ion-background-color: #111827; /* Deep slate */
+  --ion-text-color: #F9FAFB;       /* White text */
+
+  /* Grays for dark mode */
+  --ion-color-dark: #F3F4F6;
+  --ion-color-medium: #D1D5DB;
+  --ion-color-light: #F9FAFB;
+
+  /* Bootstrap mapping */
   --bs-body-bg: var(--ion-background-color);
   --bs-body-color: var(--ion-text-color);
   --bs-primary: var(--ion-color-primary);
@@ -66,61 +82,82 @@ html.dark {
   --bs-info: var(--ion-color-medium);
 }
 
+/* === Global Text Visibility Fix === */
+body,
+.text-body,
+.main-body,
+.card-title,
+.card-text,
+p,
+span,
+h1, h2, h3, h4, h5, h6 {
+  color: var(--ion-text-color) !important;
+}
+
+/* Fix muted text for both modes */
+.text-muted {
+  color: var(--ion-color-medium) !important;
+}
+
 /* === Bootstrap Buttons mapped to Ionic === */
 .btn-primary {
   background-color: var(--ion-color-primary) !important;
   border-color: var(--ion-color-primary) !important;
-  color: var(--ion-color-primary-contrast, #fff) !important;
+  color: var(--ion-color-primary-contrast) !important;
 }
-
 .btn-primary:hover {
   background-color: var(--ion-color-primary-shade) !important;
   border-color: var(--ion-color-primary-shade) !important;
 }
 
+.btn-secondary {
+  background-color: var(--ion-color-secondary) !important;
+  border-color: var(--ion-color-secondary) !important;
+  color: var(--ion-color-secondary-contrast) !important;
+}
+.btn-secondary:hover {
+  background-color: var(--ion-color-secondary-shade) !important;
+  border-color: var(--ion-color-secondary-shade) !important;
+}
+
 /* === Bootstrap Text Colors === */
-.text-primary {
-  color: var(--ion-color-primary) !important;
-}
-
-.text-secondary {
-  color: var(--ion-color-secondary) !important;
-}
-
-.text-body {
-  color: var(--ion-text-color) !important;
-}
+.text-primary { color: var(--ion-color-primary) !important; }
+.text-secondary { color: var(--ion-color-secondary) !important; }
 
 /* === Bootstrap Background Colors === */
 .bg-primary {
   background-color: var(--ion-color-primary) !important;
-  color: var(--ion-color-primary-contrast, #fff) !important;
+  color: var(--ion-color-primary-contrast) !important;
 }
-
 .bg-secondary {
   background-color: var(--ion-color-secondary) !important;
-  color: var(--ion-color-secondary-contrast, #fff) !important;
+  color: var(--ion-color-secondary-contrast) !important;
 }
-
 .bg-body {
   background-color: var(--ion-background-color) !important;
   color: var(--ion-text-color) !important;
 }
 
-/* === Main Body Styling for Ionic Layout === */
+/* === Main Body Styling === */
 .main-body {
   padding: 16px;
   background: var(--ion-background-color);
   color: var(--ion-text-color);
-  /* Remove height and overflow, let Ionic manage it */
 }
 
-/* Consistent icon colors */
+ion-content {
+  --padding-top: calc(var(--ion-safe-area-top) + 56px); /* 56px is default toolbar height */
+}
+
+ion-modal ion-content,
+ion-popover ion-content {
+  --padding-top: 0;
+}
+
+/* === Icon Colors === */
 ion-button.fill-clear ion-icon {
   color: var(--ion-color-dark) !important;
 }
-
-/* Dark mode override */
 html.dark ion-button.fill-clear ion-icon {
   color: var(--ion-color-light) !important;
 }

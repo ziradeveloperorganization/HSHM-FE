@@ -5,10 +5,12 @@ import {
   heartOutline,
   personOutline,
   chatbubbleOutline,
-  addCircleOutline
+  addCircleOutline,
+  gridOutline
 } from 'ionicons/icons';
 
 export const sidebarMenus = [
+  { path: '/user/dashboard', label: 'Dashboard', icon: gridOutline },
   { path: '/home', label: 'Home', icon: homeOutline },
   { path: '/favorites', label: 'Favorites', icon: heartOutline },
   { path: '/chat', label: 'Messages', icon: chatbubbleOutline },

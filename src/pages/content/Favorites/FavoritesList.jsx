@@ -18,10 +18,10 @@ import {
   IonSegmentButton,
   IonLabel
 } from '@ionic/react';
-import { 
-  heartOutline, 
-  heart, 
-  locationOutline, 
+import {
+  heartOutline,
+  heart,
+  locationOutline,
   pricetagOutline,
   gridOutline,
   listOutline,
@@ -161,8 +161,8 @@ export default function FavoritesList() {
         />
 
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-          <IonSegment 
-            value={sortBy} 
+          <IonSegment
+            value={sortBy}
             onIonChange={(e) => setSortBy(e.detail.value)}
             style={{ width: 'auto' }}
           >
@@ -178,15 +178,15 @@ export default function FavoritesList() {
           </IonSegment>
 
           <div>
-            <IonButton 
-              fill={viewMode === 'grid' ? 'solid' : 'clear'} 
+            <IonButton
+              fill={viewMode === 'grid' ? 'solid' : 'clear'}
               size="small"
               onClick={() => setViewMode('grid')}
             >
               <IonIcon icon={gridOutline} />
             </IonButton>
-            <IonButton 
-              fill={viewMode === 'list' ? 'solid' : 'clear'} 
+            <IonButton
+              fill={viewMode === 'list' ? 'solid' : 'clear'}
               size="small"
               onClick={() => setViewMode('list')}
             >
@@ -198,14 +198,14 @@ export default function FavoritesList() {
         {/* Empty State */}
         {filteredFavorites.length === 0 ? (
           <div className="ion-text-center" style={{ marginTop: '50%' }}>
-            <IonIcon 
-              icon={heartOutline} 
-              style={{ fontSize: '4rem', color: 'var(--ion-color-medium)' }} 
+            <IonIcon
+              icon={heartOutline}
+              style={{ fontSize: '4rem', color: 'var(--ion-color-medium)' }}
             />
             <h3>No favorites yet</h3>
             <p>Items you like will appear here</p>
-            <IonButton 
-              fill="outline" 
+            <IonButton
+              fill="outline"
               onClick={() => history.push('/home')}
             >
               Browse Items
@@ -216,7 +216,7 @@ export default function FavoritesList() {
           <IonGrid>
             <IonRow>
               {filteredFavorites.map((favorite, index) => (
-                <IonCol 
+                <IonCol
                   key={favorite.id}
                   size={viewMode === 'grid' ? '6' : '12'}
                   sizeMd={viewMode === 'grid' ? '4' : '12'}
@@ -227,7 +227,7 @@ export default function FavoritesList() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <IonCard 
+                    <IonCard
                       button
                       onClick={() => handleItemClick(favorite.listing.id)}
                       style={{ margin: 0, height: '100%' }}
@@ -236,12 +236,12 @@ export default function FavoritesList() {
                         <IonImg
                           src={favorite.listing.images[0]}
                           alt={favorite.listing.title}
-                          style={{ 
+                          style={{
                             height: viewMode === 'grid' ? '150px' : '120px',
                             objectFit: 'cover'
                           }}
                         />
-                        
+
                         {/* Remove from favorites button */}
                         <IonButton
                           fill="clear"
@@ -265,24 +265,24 @@ export default function FavoritesList() {
                       </div>
 
                       <IonCardContent>
-                        <h3 style={{ 
-                          margin: '0 0 8px 0', 
+                        <h3 style={{
+                          margin: '0 0 8px 0',
                           fontSize: viewMode === 'grid' ? '0.9rem' : '1.1rem',
                           fontWeight: 'bold'
                         }}>
                           {favorite.listing.title}
                         </h3>
-                        
+
                         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '4px' }}>
                           <IonIcon icon={pricetagOutline} color="primary" style={{ marginRight: '4px' }} />
                           <IonText color="primary" style={{ fontWeight: 'bold' }}>
                             {favorite.listing.currency}{favorite.listing.price}
                           </IonText>
                         </div>
-                        
+
                         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '8px' }}>
                           <IonIcon icon={locationOutline} color="medium" style={{ marginRight: '4px' }} />
-                          <IonText color="medium" style={{ fontSize: '0.8rem' }}>
+                          <IonText className="secondary-text" style={{ fontSize: '0.8rem' }}>
                             {favorite.listing.location.distance}
                           </IonText>
                         </div>

@@ -136,10 +136,10 @@ export default function ChatDetail() {
               <img src={otherUser.avatar} alt={otherUser.fullName} />
             </IonAvatar>
             <div>
-              <IonTitle style={{ fontSize: '1rem', padding: 0 }}>
+              <IonTitle style={{ fontSize: '1rem', padding: 0, color: 'var(--ion-text-color)' }}>
                 {otherUser.fullName}
               </IonTitle>
-              <IonText color="medium" style={{ fontSize: '0.8rem' }}>
+              <IonText style={{ fontSize: '0.8rem', color: 'var(--ion-color-medium)' }}>
                 {conversation.listing.title}
               </IonText>
             </div>
@@ -158,30 +158,20 @@ export default function ChatDetail() {
 
       <IonContent ref={contentRef} className="ion-padding">
         {/* Listing Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="ion-margin-bottom"
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="ion-margin-bottom">
           <IonCard>
             <IonCardContent>
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 <IonImg
                   src={conversation.listing.images[0]}
                   alt={conversation.listing.title}
-                  style={{ 
-                    width: '60px', 
-                    height: '60px', 
-                    borderRadius: '8px',
-                    marginRight: '12px',
-                    objectFit: 'cover'
-                  }}
+                  style={{ width: '60px', height: '60px', borderRadius: '8px', marginRight: '12px', objectFit: 'cover' }}
                 />
                 <div style={{ flex: 1 }}>
-                  <h3 style={{ margin: '0 0 4px 0', fontSize: '1rem' }}>
+                  <h3 style={{ margin: '0 0 4px 0', fontSize: '1rem', color: 'var(--ion-text-color)' }}>
                     {conversation.listing.title}
                   </h3>
-                  <IonText color="primary" style={{ fontWeight: 'bold' }}>
+                  <IonText style={{ fontWeight: 'bold', color: 'var(--ion-color-primary)' }}>
                     {conversation.listing.currency}{conversation.listing.price}
                   </IonText>
                 </div>
@@ -194,44 +184,32 @@ export default function ChatDetail() {
         <div className="messages-container">
           {messages.map((message, index) => {
             const isCurrentUser = message.senderId === currentUserId;
-            
+
             return (
               <motion.div
                 key={message.id}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05 }}
-                style={{
-                  display: 'flex',
-                  justifyContent: isCurrentUser ? 'flex-end' : 'flex-start',
-                  marginBottom: '12px'
-                }}
+                style={{ display: 'flex', justifyContent: isCurrentUser ? 'flex-end' : 'flex-start', marginBottom: '12px' }}
               >
                 <div
                   style={{
                     maxWidth: '70%',
                     padding: '12px 16px',
                     borderRadius: '18px',
-                    backgroundColor: isCurrentUser 
-                      ? 'var(--ion-color-primary)' 
-                      : 'var(--ion-color-light)',
-                    color: isCurrentUser 
-                      ? 'var(--ion-color-primary-contrast)' 
-                      : 'var(--ion-color-dark)',
-                    position: 'relative'
+                    backgroundColor: isCurrentUser
+                      ? 'var(--ion-color-primary)'
+                      : 'var(--ion-background-color)',
+                    color: isCurrentUser
+                      ? 'var(--ion-color-primary-contrast)'
+                      : 'var(--ion-text-color)',
+                    position: 'relative',
+                    border: isCurrentUser ? 'none' : '1px solid var(--ion-color-medium)'
                   }}
                 >
-                  <p style={{ margin: '0 0 4px 0' }}>
-                    {message.message}
-                  </p>
-                  <IonText 
-                    style={{ 
-                      fontSize: '0.7rem',
-                      opacity: 0.7,
-                      display: 'block',
-                      textAlign: 'right'
-                    }}
-                  >
+                  <p style={{ margin: '0 0 4px 0' }}>{message.message}</p>
+                  <IonText style={{ fontSize: '0.7rem', opacity: 0.6, display: 'block', textAlign: 'right', color: 'var(--ion-text-color)' }}>
                     {formatTime(message.timestamp)}
                   </IonText>
                 </div>
@@ -244,37 +222,25 @@ export default function ChatDetail() {
       <IonFooter>
         <IonToolbar>
           <IonItem lines="none">
-            <IonButton 
-              fill="clear" 
-              slot="start"
-              disabled
-            >
+            <IonButton fill="clear" slot="start" disabled>
               <IonIcon icon={imageOutline} />
             </IonButton>
-            
+
             <IonInput
               value={newMessage}
               onIonInput={(e) => setNewMessage(e.detail.value)}
               placeholder="Type a message..."
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  sendMessage();
-                }
-              }}
+              onKeyDown={(e) => { if (e.key === 'Enter') sendMessage(); }}
               style={{
                 background: 'var(--ion-color-light)',
                 borderRadius: '20px',
                 padding: '8px 16px',
-                margin: '0 8px'
+                margin: '0 8px',
+                color: 'var(--ion-text-color)' // <-- ensures visibility in dark mode
               }}
             />
-            
-            <IonButton 
-              fill="clear" 
-              slot="end"
-              onClick={sendMessage}
-              disabled={!newMessage.trim()}
-            >
+
+            <IonButton fill="clear" slot="end" onClick={sendMessage} disabled={!newMessage.trim()}>
               <IonIcon icon={sendOutline} />
             </IonButton>
           </IonItem>

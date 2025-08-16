@@ -3,26 +3,51 @@ import { IonPage, IonContent, IonIcon } from "@ionic/react";
 import { lockClosed, mail, logoGoogle, logoFacebook, logoTwitter } from "ionicons/icons";
 import "../../assets/css/component/Login.css";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const history = useHistory();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    setError(""); // Clear error when user types
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log("Logging in with:", form);
+    setError("");
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const result = await login(form);
+      
+      if (result.success) {
+        // Redirect based on user role
+        const user = result.user;
+        switch (user.role) {
+          case 'admin':
+            history.push("/admin/dashboard");
+            break;
+          case 'superadmin':
+            history.push("/superadmin/dashboard");
+            break;
+          case 'user':
+          default:
+            history.push("/user/dashboard");
+            break;
+        }
+      } else {
+        setError(result.error || "Login failed");
+      }
+    } catch (error) {
+      setError("An error occurred during login");
+    } finally {
       setIsLoading(false);
-      history.push("/home");
-    }, 1500);
+    }
   };
 
   return (
@@ -36,6 +61,19 @@ export default function Login() {
           <div className="login-card">
             <h2>Welcome Back</h2>
             <p>Please sign in to your account</p>
+            
+            {error && (
+              <div style={{ 
+                color: 'var(--ion-color-danger)', 
+                textAlign: 'center', 
+                marginBottom: '16px',
+                padding: '8px',
+                backgroundColor: 'rgba(var(--ion-color-danger-rgb), 0.1)',
+                borderRadius: '8px'
+              }}>
+                {error}
+              </div>
+            )}
             
             <form onSubmit={handleSubmit}>
               <div className="form-group">
@@ -98,6 +136,21 @@ export default function Login() {
             <div className="login-footer">
               <a href="/forgot-password">Forgot Password?</a>
               <a href="/register">Create Account</a>
+            </div>
+            
+            {/* Demo Credentials */}
+            <div style={{ 
+              marginTop: '20px', 
+              padding: '12px', 
+              backgroundColor: 'var(--ion-color-light)',
+              borderRadius: '8px',
+              fontSize: '0.8rem'
+            }}>
+              <strong>Demo Credentials:</strong><br />
+              User: john@example.com<br />
+              Admin: sarah@example.com<br />
+              Super Admin: admin@example.com<br />
+              Password: password123 (for all)
             </div>
           </div>
         </div>
