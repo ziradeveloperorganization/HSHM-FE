@@ -7,7 +7,7 @@ Project: HSHM (Ionic React + Vite + Capacitor)
 Overview
 This project is an Ionic React app built with Vite, packaged as a native Android app using Capacitor. This README provides instructions to build the web app, sync it with the Android native project, and generate an APK using Android Studio.
 
-Prerequisites
+Prerequisites 1
 
 * Node.js and npm installed
 * Android Studio installed and configured
