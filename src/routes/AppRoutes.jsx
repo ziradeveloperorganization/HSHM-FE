@@ -7,6 +7,11 @@ import Login from "../pages/auth/Login";
 import Home from "../pages/content/Home";
 import About from "../pages/content/About";
 import ProductDetail from "../pages/content/Product/ProductDetail";
+import ChatList from "../pages/content/Chat/ChatList";
+import ChatDetail from "../pages/content/Chat/ChatDetail";
+import FavoritesList from "../pages/content/Favorites/FavoritesList";
+import UserProfile from "../pages/content/Profile/UserProfile";
+import CreateListing from "../pages/content/CreateListing/CreateListing";
 
 export default function AppRoutes() {
   const [dark, setDark] = useState(false);
@@ -54,6 +59,11 @@ export default function AppRoutes() {
         <Route path="/home" exact component={Home} />
         <Route path="/about" exact component={About} />
         <Route path="/product/:id" exact component={ProductDetail} />
+        <Route path="/chat" exact component={ChatList} />
+        <Route path="/chat/:conversationId" exact component={ChatDetail} />
+        <Route path="/favorites" exact component={FavoritesList} />
+        <Route path="/profile" exact component={UserProfile} />
+        <Route path="/create-listing" exact component={CreateListing} />
       </IonRouterOutlet>
     </MainLayout>
   );

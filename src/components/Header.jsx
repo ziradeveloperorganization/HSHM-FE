@@ -27,7 +27,7 @@ import {
   chevronBack,
 } from 'ionicons/icons';
 import { useTranslation } from 'react-i18next';
-import { commonData } from '../core/CommonDatas';
+import { commonData } from '../core/commondatas';
 import '../assets/css/component/Header.css';
 
 const dummyUser = {

@@ -1,7 +1,7 @@
 import { IonContent, IonPage, IonHeader, IonToolbar, IonTitle, IonButton, IonIcon, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/react';
 import React, { useEffect } from 'react';
 import { logoWhatsapp, mailOutline, locationOutline, phonePortraitOutline } from 'ionicons/icons';
-import { commonData } from '../../core/CommonDatas';
+import { commonData } from '../../core/commondatas';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import '../../assets/css/component/About.css';
